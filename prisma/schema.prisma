@@ -8,6 +8,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Page {
+  id           Int      @id @default(autoincrement())
+  name         String
+  introduction String
+  avatar       String
+
+  techs        Techs[]
+}
+
+model Socials {
+  id        Int      @id @default(autoincrement())
+  name      String
+  link      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Post {
   id        Int        @id @default(autoincrement())
   slug      String     @unique
@@ -15,12 +32,51 @@ model Post {
   title     String
   body      String
   cover     String
+  repo      String
+  link      String
   tags      String     @default("")
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
-  authorId Int
-  author   User? @relation(fields: [authorId], references: [id])
+  shortDescription ShortDescription[]
+  techs     Techs[]
+  sections  Sections[]
+
+  authorId  Int
+  author    User? @relation(fields: [authorId], references: [id])
+}
+
+model Techs {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  postId    Int
+  post      Post? @relation(fields: [postId], references: [id])
+  pageId    Int
+  page      Page? @relation(fields: [pageId], references: [id])
+}
+
+model Sections {
+  id        Int      @id @default(autoincrement())
+  title     String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  postId    Int
+  post      Post? @relation(fields: [postId], references: [id])
+}
+
+model ShortDescription {
+  id          Int      @id @default(autoincrement())
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  postId      Int
+  post        Post? @relation(fields: [postId], references: [id])
 }
 
 enum PostStatus {
@@ -37,5 +93,5 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  posts Post[]
+  posts     Post[]
 }

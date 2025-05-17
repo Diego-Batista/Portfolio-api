@@ -120,6 +120,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.PageScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  introduction: 'introduction',
+  avatar: 'avatar'
+};
+
+exports.Prisma.SocialsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  link: 'link',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
   slug: 'slug',
@@ -127,10 +142,38 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   body: 'body',
   cover: 'cover',
+  repo: 'repo',
+  link: 'link',
   tags: 'tags',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   authorId: 'authorId'
+};
+
+exports.Prisma.TechsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  postId: 'postId',
+  pageId: 'pageId'
+};
+
+exports.Prisma.SectionsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  image: 'image',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  postId: 'postId'
+};
+
+exports.Prisma.ShortDescriptionScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  postId: 'postId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -158,7 +201,12 @@ exports.PostStatus = exports.$Enums.PostStatus = {
 };
 
 exports.Prisma.ModelName = {
+  Page: 'Page',
+  Socials: 'Socials',
   Post: 'Post',
+  Techs: 'Techs',
+  Sections: 'Sections',
+  ShortDescription: 'ShortDescription',
   User: 'User'
 };
 
