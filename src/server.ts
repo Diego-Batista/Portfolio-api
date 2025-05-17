@@ -8,10 +8,10 @@ server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(express.static('public'))
 
-server.get('/ping', (req, res) => {
+server.get('/api/ping', (req, res) => {
     res.json({ pong: true })
 })
 
 server.listen(4444, () => {
-    console.log('Portfolio Diego backend running...')
+    console.log('Portfolio Diego backend running... 🚀')
 })

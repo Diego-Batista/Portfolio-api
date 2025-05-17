@@ -23,12 +23,13 @@
         "globals": "^16.1.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.0.0",
-        "prisma": "^6.8.0",
+        "prisma": "^6.7.0",
         "tsx": "^4.19.4",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.32.1"
     },
     "dependencies": {
+        "@prisma/client": "^6.7.0",
         "bcryptjs": "^3.0.2",
         "body-parser": "^2.2.0",
         "cors": "^2.8.5",
