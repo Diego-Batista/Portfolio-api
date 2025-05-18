@@ -44,11 +44,6 @@ export type PageTech = $Result.DefaultSelection<Prisma.$PageTechPayload>
  */
 export type Sections = $Result.DefaultSelection<Prisma.$SectionsPayload>
 /**
- * Model ShortDescription
- * 
- */
-export type ShortDescription = $Result.DefaultSelection<Prisma.$ShortDescriptionPayload>
-/**
  * Model User
  * 
  */
@@ -255,16 +250,6 @@ export class PrismaClient<
     * ```
     */
   get sections(): Prisma.SectionsDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.shortDescription`: Exposes CRUD operations for the **ShortDescription** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ShortDescriptions
-    * const shortDescriptions = await prisma.shortDescription.findMany()
-    * ```
-    */
-  get shortDescription(): Prisma.ShortDescriptionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -721,7 +706,6 @@ export namespace Prisma {
     PostTech: 'PostTech',
     PageTech: 'PageTech',
     Sections: 'Sections',
-    ShortDescription: 'ShortDescription',
     User: 'User'
   };
 
@@ -741,7 +725,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "page" | "socials" | "post" | "postTech" | "pageTech" | "sections" | "shortDescription" | "user"
+      modelProps: "page" | "socials" | "post" | "postTech" | "pageTech" | "sections" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1189,80 +1173,6 @@ export namespace Prisma {
           }
         }
       }
-      ShortDescription: {
-        payload: Prisma.$ShortDescriptionPayload<ExtArgs>
-        fields: Prisma.ShortDescriptionFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ShortDescriptionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ShortDescriptionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>
-          }
-          findFirst: {
-            args: Prisma.ShortDescriptionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ShortDescriptionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>
-          }
-          findMany: {
-            args: Prisma.ShortDescriptionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>[]
-          }
-          create: {
-            args: Prisma.ShortDescriptionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>
-          }
-          createMany: {
-            args: Prisma.ShortDescriptionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ShortDescriptionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>[]
-          }
-          delete: {
-            args: Prisma.ShortDescriptionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>
-          }
-          update: {
-            args: Prisma.ShortDescriptionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>
-          }
-          deleteMany: {
-            args: Prisma.ShortDescriptionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ShortDescriptionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ShortDescriptionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>[]
-          }
-          upsert: {
-            args: Prisma.ShortDescriptionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ShortDescriptionPayload>
-          }
-          aggregate: {
-            args: Prisma.ShortDescriptionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateShortDescription>
-          }
-          groupBy: {
-            args: Prisma.ShortDescriptionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ShortDescriptionGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ShortDescriptionCountArgs<ExtArgs>
-            result: $Utils.Optional<ShortDescriptionCountAggregateOutputType> | number
-          }
-        }
-      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1427,7 +1337,6 @@ export namespace Prisma {
     postTech?: PostTechOmit
     pageTech?: PageTechOmit
     sections?: SectionsOmit
-    shortDescription?: ShortDescriptionOmit
     user?: UserOmit
   }
 
@@ -1554,13 +1463,11 @@ export namespace Prisma {
    */
 
   export type PostCountOutputType = {
-    shortDescription: number
     techs: number
     sections: number
   }
 
   export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    shortDescription?: boolean | PostCountOutputTypeCountShortDescriptionArgs
     techs?: boolean | PostCountOutputTypeCountTechsArgs
     sections?: boolean | PostCountOutputTypeCountSectionsArgs
   }
@@ -1574,13 +1481,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the PostCountOutputType
      */
     select?: PostCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * PostCountOutputType without action
-   */
-  export type PostCountOutputTypeCountShortDescriptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ShortDescriptionWhereInput
   }
 
   /**
@@ -3785,6 +3685,7 @@ export namespace Prisma {
     repo: string | null
     link: string | null
     tags: string | null
+    shortDescription: string | null
     createdAt: Date | null
     updatedAt: Date | null
     authorId: number | null
@@ -3800,6 +3701,7 @@ export namespace Prisma {
     repo: string | null
     link: string | null
     tags: string | null
+    shortDescription: string | null
     createdAt: Date | null
     updatedAt: Date | null
     authorId: number | null
@@ -3815,6 +3717,7 @@ export namespace Prisma {
     repo: number
     link: number
     tags: number
+    shortDescription: number
     createdAt: number
     updatedAt: number
     authorId: number
@@ -3842,6 +3745,7 @@ export namespace Prisma {
     repo?: true
     link?: true
     tags?: true
+    shortDescription?: true
     createdAt?: true
     updatedAt?: true
     authorId?: true
@@ -3857,6 +3761,7 @@ export namespace Prisma {
     repo?: true
     link?: true
     tags?: true
+    shortDescription?: true
     createdAt?: true
     updatedAt?: true
     authorId?: true
@@ -3872,6 +3777,7 @@ export namespace Prisma {
     repo?: true
     link?: true
     tags?: true
+    shortDescription?: true
     createdAt?: true
     updatedAt?: true
     authorId?: true
@@ -3974,6 +3880,7 @@ export namespace Prisma {
     repo: string
     link: string
     tags: string
+    shortDescription: string
     createdAt: Date
     updatedAt: Date
     authorId: number
@@ -4008,10 +3915,10 @@ export namespace Prisma {
     repo?: boolean
     link?: boolean
     tags?: boolean
+    shortDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     authorId?: boolean
-    shortDescription?: boolean | Post$shortDescriptionArgs<ExtArgs>
     techs?: boolean | Post$techsArgs<ExtArgs>
     sections?: boolean | Post$sectionsArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -4028,6 +3935,7 @@ export namespace Prisma {
     repo?: boolean
     link?: boolean
     tags?: boolean
+    shortDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     authorId?: boolean
@@ -4044,6 +3952,7 @@ export namespace Prisma {
     repo?: boolean
     link?: boolean
     tags?: boolean
+    shortDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     authorId?: boolean
@@ -4060,14 +3969,14 @@ export namespace Prisma {
     repo?: boolean
     link?: boolean
     tags?: boolean
+    shortDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     authorId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "status" | "title" | "body" | "cover" | "repo" | "link" | "tags" | "createdAt" | "updatedAt" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "status" | "title" | "body" | "cover" | "repo" | "link" | "tags" | "shortDescription" | "createdAt" | "updatedAt" | "authorId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    shortDescription?: boolean | Post$shortDescriptionArgs<ExtArgs>
     techs?: boolean | Post$techsArgs<ExtArgs>
     sections?: boolean | Post$sectionsArgs<ExtArgs>
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -4083,7 +3992,6 @@ export namespace Prisma {
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
-      shortDescription: Prisma.$ShortDescriptionPayload<ExtArgs>[]
       techs: Prisma.$PostTechPayload<ExtArgs>[]
       sections: Prisma.$SectionsPayload<ExtArgs>[]
       author: Prisma.$UserPayload<ExtArgs> | null
@@ -4098,6 +4006,7 @@ export namespace Prisma {
       repo: string
       link: string
       tags: string
+      shortDescription: string
       createdAt: Date
       updatedAt: Date
       authorId: number
@@ -4495,7 +4404,6 @@ export namespace Prisma {
    */
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    shortDescription<T extends Post$shortDescriptionArgs<ExtArgs> = {}>(args?: Subset<T, Post$shortDescriptionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     techs<T extends Post$techsArgs<ExtArgs> = {}>(args?: Subset<T, Post$techsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostTechPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sections<T extends Post$sectionsArgs<ExtArgs> = {}>(args?: Subset<T, Post$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     author<T extends Post$authorArgs<ExtArgs> = {}>(args?: Subset<T, Post$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -4537,6 +4445,7 @@ export namespace Prisma {
     readonly repo: FieldRef<"Post", 'String'>
     readonly link: FieldRef<"Post", 'String'>
     readonly tags: FieldRef<"Post", 'String'>
+    readonly shortDescription: FieldRef<"Post", 'String'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly updatedAt: FieldRef<"Post", 'DateTime'>
     readonly authorId: FieldRef<"Post", 'Int'>
@@ -4933,30 +4842,6 @@ export namespace Prisma {
      * Limit how many Posts to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Post.shortDescription
-   */
-  export type Post$shortDescriptionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    where?: ShortDescriptionWhereInput
-    orderBy?: ShortDescriptionOrderByWithRelationInput | ShortDescriptionOrderByWithRelationInput[]
-    cursor?: ShortDescriptionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ShortDescriptionScalarFieldEnum | ShortDescriptionScalarFieldEnum[]
   }
 
   /**
@@ -8366,1121 +8251,6 @@ export namespace Prisma {
 
 
   /**
-   * Model ShortDescription
-   */
-
-  export type AggregateShortDescription = {
-    _count: ShortDescriptionCountAggregateOutputType | null
-    _avg: ShortDescriptionAvgAggregateOutputType | null
-    _sum: ShortDescriptionSumAggregateOutputType | null
-    _min: ShortDescriptionMinAggregateOutputType | null
-    _max: ShortDescriptionMaxAggregateOutputType | null
-  }
-
-  export type ShortDescriptionAvgAggregateOutputType = {
-    id: number | null
-    postId: number | null
-  }
-
-  export type ShortDescriptionSumAggregateOutputType = {
-    id: number | null
-    postId: number | null
-  }
-
-  export type ShortDescriptionMinAggregateOutputType = {
-    id: number | null
-    description: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    postId: number | null
-  }
-
-  export type ShortDescriptionMaxAggregateOutputType = {
-    id: number | null
-    description: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    postId: number | null
-  }
-
-  export type ShortDescriptionCountAggregateOutputType = {
-    id: number
-    description: number
-    createdAt: number
-    updatedAt: number
-    postId: number
-    _all: number
-  }
-
-
-  export type ShortDescriptionAvgAggregateInputType = {
-    id?: true
-    postId?: true
-  }
-
-  export type ShortDescriptionSumAggregateInputType = {
-    id?: true
-    postId?: true
-  }
-
-  export type ShortDescriptionMinAggregateInputType = {
-    id?: true
-    description?: true
-    createdAt?: true
-    updatedAt?: true
-    postId?: true
-  }
-
-  export type ShortDescriptionMaxAggregateInputType = {
-    id?: true
-    description?: true
-    createdAt?: true
-    updatedAt?: true
-    postId?: true
-  }
-
-  export type ShortDescriptionCountAggregateInputType = {
-    id?: true
-    description?: true
-    createdAt?: true
-    updatedAt?: true
-    postId?: true
-    _all?: true
-  }
-
-  export type ShortDescriptionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ShortDescription to aggregate.
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShortDescriptions to fetch.
-     */
-    orderBy?: ShortDescriptionOrderByWithRelationInput | ShortDescriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ShortDescriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShortDescriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShortDescriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ShortDescriptions
-    **/
-    _count?: true | ShortDescriptionCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ShortDescriptionAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ShortDescriptionSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ShortDescriptionMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ShortDescriptionMaxAggregateInputType
-  }
-
-  export type GetShortDescriptionAggregateType<T extends ShortDescriptionAggregateArgs> = {
-        [P in keyof T & keyof AggregateShortDescription]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateShortDescription[P]>
-      : GetScalarType<T[P], AggregateShortDescription[P]>
-  }
-
-
-
-
-  export type ShortDescriptionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ShortDescriptionWhereInput
-    orderBy?: ShortDescriptionOrderByWithAggregationInput | ShortDescriptionOrderByWithAggregationInput[]
-    by: ShortDescriptionScalarFieldEnum[] | ShortDescriptionScalarFieldEnum
-    having?: ShortDescriptionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ShortDescriptionCountAggregateInputType | true
-    _avg?: ShortDescriptionAvgAggregateInputType
-    _sum?: ShortDescriptionSumAggregateInputType
-    _min?: ShortDescriptionMinAggregateInputType
-    _max?: ShortDescriptionMaxAggregateInputType
-  }
-
-  export type ShortDescriptionGroupByOutputType = {
-    id: number
-    description: string
-    createdAt: Date
-    updatedAt: Date
-    postId: number
-    _count: ShortDescriptionCountAggregateOutputType | null
-    _avg: ShortDescriptionAvgAggregateOutputType | null
-    _sum: ShortDescriptionSumAggregateOutputType | null
-    _min: ShortDescriptionMinAggregateOutputType | null
-    _max: ShortDescriptionMaxAggregateOutputType | null
-  }
-
-  type GetShortDescriptionGroupByPayload<T extends ShortDescriptionGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ShortDescriptionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ShortDescriptionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ShortDescriptionGroupByOutputType[P]>
-            : GetScalarType<T[P], ShortDescriptionGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ShortDescriptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    description?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    postId?: boolean
-    post?: boolean | ShortDescription$postArgs<ExtArgs>
-  }, ExtArgs["result"]["shortDescription"]>
-
-  export type ShortDescriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    description?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    postId?: boolean
-    post?: boolean | ShortDescription$postArgs<ExtArgs>
-  }, ExtArgs["result"]["shortDescription"]>
-
-  export type ShortDescriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    description?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    postId?: boolean
-    post?: boolean | ShortDescription$postArgs<ExtArgs>
-  }, ExtArgs["result"]["shortDescription"]>
-
-  export type ShortDescriptionSelectScalar = {
-    id?: boolean
-    description?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    postId?: boolean
-  }
-
-  export type ShortDescriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "createdAt" | "updatedAt" | "postId", ExtArgs["result"]["shortDescription"]>
-  export type ShortDescriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    post?: boolean | ShortDescription$postArgs<ExtArgs>
-  }
-  export type ShortDescriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    post?: boolean | ShortDescription$postArgs<ExtArgs>
-  }
-  export type ShortDescriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    post?: boolean | ShortDescription$postArgs<ExtArgs>
-  }
-
-  export type $ShortDescriptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ShortDescription"
-    objects: {
-      post: Prisma.$PostPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      description: string
-      createdAt: Date
-      updatedAt: Date
-      postId: number
-    }, ExtArgs["result"]["shortDescription"]>
-    composites: {}
-  }
-
-  type ShortDescriptionGetPayload<S extends boolean | null | undefined | ShortDescriptionDefaultArgs> = $Result.GetResult<Prisma.$ShortDescriptionPayload, S>
-
-  type ShortDescriptionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ShortDescriptionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ShortDescriptionCountAggregateInputType | true
-    }
-
-  export interface ShortDescriptionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ShortDescription'], meta: { name: 'ShortDescription' } }
-    /**
-     * Find zero or one ShortDescription that matches the filter.
-     * @param {ShortDescriptionFindUniqueArgs} args - Arguments to find a ShortDescription
-     * @example
-     * // Get one ShortDescription
-     * const shortDescription = await prisma.shortDescription.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ShortDescriptionFindUniqueArgs>(args: SelectSubset<T, ShortDescriptionFindUniqueArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one ShortDescription that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ShortDescriptionFindUniqueOrThrowArgs} args - Arguments to find a ShortDescription
-     * @example
-     * // Get one ShortDescription
-     * const shortDescription = await prisma.shortDescription.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ShortDescriptionFindUniqueOrThrowArgs>(args: SelectSubset<T, ShortDescriptionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ShortDescription that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionFindFirstArgs} args - Arguments to find a ShortDescription
-     * @example
-     * // Get one ShortDescription
-     * const shortDescription = await prisma.shortDescription.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ShortDescriptionFindFirstArgs>(args?: SelectSubset<T, ShortDescriptionFindFirstArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first ShortDescription that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionFindFirstOrThrowArgs} args - Arguments to find a ShortDescription
-     * @example
-     * // Get one ShortDescription
-     * const shortDescription = await prisma.shortDescription.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ShortDescriptionFindFirstOrThrowArgs>(args?: SelectSubset<T, ShortDescriptionFindFirstOrThrowArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more ShortDescriptions that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ShortDescriptions
-     * const shortDescriptions = await prisma.shortDescription.findMany()
-     * 
-     * // Get first 10 ShortDescriptions
-     * const shortDescriptions = await prisma.shortDescription.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const shortDescriptionWithIdOnly = await prisma.shortDescription.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ShortDescriptionFindManyArgs>(args?: SelectSubset<T, ShortDescriptionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a ShortDescription.
-     * @param {ShortDescriptionCreateArgs} args - Arguments to create a ShortDescription.
-     * @example
-     * // Create one ShortDescription
-     * const ShortDescription = await prisma.shortDescription.create({
-     *   data: {
-     *     // ... data to create a ShortDescription
-     *   }
-     * })
-     * 
-     */
-    create<T extends ShortDescriptionCreateArgs>(args: SelectSubset<T, ShortDescriptionCreateArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many ShortDescriptions.
-     * @param {ShortDescriptionCreateManyArgs} args - Arguments to create many ShortDescriptions.
-     * @example
-     * // Create many ShortDescriptions
-     * const shortDescription = await prisma.shortDescription.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ShortDescriptionCreateManyArgs>(args?: SelectSubset<T, ShortDescriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ShortDescriptions and returns the data saved in the database.
-     * @param {ShortDescriptionCreateManyAndReturnArgs} args - Arguments to create many ShortDescriptions.
-     * @example
-     * // Create many ShortDescriptions
-     * const shortDescription = await prisma.shortDescription.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ShortDescriptions and only return the `id`
-     * const shortDescriptionWithIdOnly = await prisma.shortDescription.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ShortDescriptionCreateManyAndReturnArgs>(args?: SelectSubset<T, ShortDescriptionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a ShortDescription.
-     * @param {ShortDescriptionDeleteArgs} args - Arguments to delete one ShortDescription.
-     * @example
-     * // Delete one ShortDescription
-     * const ShortDescription = await prisma.shortDescription.delete({
-     *   where: {
-     *     // ... filter to delete one ShortDescription
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ShortDescriptionDeleteArgs>(args: SelectSubset<T, ShortDescriptionDeleteArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one ShortDescription.
-     * @param {ShortDescriptionUpdateArgs} args - Arguments to update one ShortDescription.
-     * @example
-     * // Update one ShortDescription
-     * const shortDescription = await prisma.shortDescription.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ShortDescriptionUpdateArgs>(args: SelectSubset<T, ShortDescriptionUpdateArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more ShortDescriptions.
-     * @param {ShortDescriptionDeleteManyArgs} args - Arguments to filter ShortDescriptions to delete.
-     * @example
-     * // Delete a few ShortDescriptions
-     * const { count } = await prisma.shortDescription.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ShortDescriptionDeleteManyArgs>(args?: SelectSubset<T, ShortDescriptionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ShortDescriptions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ShortDescriptions
-     * const shortDescription = await prisma.shortDescription.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ShortDescriptionUpdateManyArgs>(args: SelectSubset<T, ShortDescriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ShortDescriptions and returns the data updated in the database.
-     * @param {ShortDescriptionUpdateManyAndReturnArgs} args - Arguments to update many ShortDescriptions.
-     * @example
-     * // Update many ShortDescriptions
-     * const shortDescription = await prisma.shortDescription.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more ShortDescriptions and only return the `id`
-     * const shortDescriptionWithIdOnly = await prisma.shortDescription.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ShortDescriptionUpdateManyAndReturnArgs>(args: SelectSubset<T, ShortDescriptionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one ShortDescription.
-     * @param {ShortDescriptionUpsertArgs} args - Arguments to update or create a ShortDescription.
-     * @example
-     * // Update or create a ShortDescription
-     * const shortDescription = await prisma.shortDescription.upsert({
-     *   create: {
-     *     // ... data to create a ShortDescription
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ShortDescription we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ShortDescriptionUpsertArgs>(args: SelectSubset<T, ShortDescriptionUpsertArgs<ExtArgs>>): Prisma__ShortDescriptionClient<$Result.GetResult<Prisma.$ShortDescriptionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of ShortDescriptions.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionCountArgs} args - Arguments to filter ShortDescriptions to count.
-     * @example
-     * // Count the number of ShortDescriptions
-     * const count = await prisma.shortDescription.count({
-     *   where: {
-     *     // ... the filter for the ShortDescriptions we want to count
-     *   }
-     * })
-    **/
-    count<T extends ShortDescriptionCountArgs>(
-      args?: Subset<T, ShortDescriptionCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ShortDescriptionCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ShortDescription.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ShortDescriptionAggregateArgs>(args: Subset<T, ShortDescriptionAggregateArgs>): Prisma.PrismaPromise<GetShortDescriptionAggregateType<T>>
-
-    /**
-     * Group by ShortDescription.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ShortDescriptionGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ShortDescriptionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ShortDescriptionGroupByArgs['orderBy'] }
-        : { orderBy?: ShortDescriptionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ShortDescriptionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShortDescriptionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ShortDescription model
-   */
-  readonly fields: ShortDescriptionFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ShortDescription.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ShortDescriptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    post<T extends ShortDescription$postArgs<ExtArgs> = {}>(args?: Subset<T, ShortDescription$postArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ShortDescription model
-   */
-  interface ShortDescriptionFieldRefs {
-    readonly id: FieldRef<"ShortDescription", 'Int'>
-    readonly description: FieldRef<"ShortDescription", 'String'>
-    readonly createdAt: FieldRef<"ShortDescription", 'DateTime'>
-    readonly updatedAt: FieldRef<"ShortDescription", 'DateTime'>
-    readonly postId: FieldRef<"ShortDescription", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ShortDescription findUnique
-   */
-  export type ShortDescriptionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which ShortDescription to fetch.
-     */
-    where: ShortDescriptionWhereUniqueInput
-  }
-
-  /**
-   * ShortDescription findUniqueOrThrow
-   */
-  export type ShortDescriptionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which ShortDescription to fetch.
-     */
-    where: ShortDescriptionWhereUniqueInput
-  }
-
-  /**
-   * ShortDescription findFirst
-   */
-  export type ShortDescriptionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which ShortDescription to fetch.
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShortDescriptions to fetch.
-     */
-    orderBy?: ShortDescriptionOrderByWithRelationInput | ShortDescriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ShortDescriptions.
-     */
-    cursor?: ShortDescriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShortDescriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShortDescriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ShortDescriptions.
-     */
-    distinct?: ShortDescriptionScalarFieldEnum | ShortDescriptionScalarFieldEnum[]
-  }
-
-  /**
-   * ShortDescription findFirstOrThrow
-   */
-  export type ShortDescriptionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which ShortDescription to fetch.
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShortDescriptions to fetch.
-     */
-    orderBy?: ShortDescriptionOrderByWithRelationInput | ShortDescriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ShortDescriptions.
-     */
-    cursor?: ShortDescriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShortDescriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShortDescriptions.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ShortDescriptions.
-     */
-    distinct?: ShortDescriptionScalarFieldEnum | ShortDescriptionScalarFieldEnum[]
-  }
-
-  /**
-   * ShortDescription findMany
-   */
-  export type ShortDescriptionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * Filter, which ShortDescriptions to fetch.
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ShortDescriptions to fetch.
-     */
-    orderBy?: ShortDescriptionOrderByWithRelationInput | ShortDescriptionOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ShortDescriptions.
-     */
-    cursor?: ShortDescriptionWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ShortDescriptions from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ShortDescriptions.
-     */
-    skip?: number
-    distinct?: ShortDescriptionScalarFieldEnum | ShortDescriptionScalarFieldEnum[]
-  }
-
-  /**
-   * ShortDescription create
-   */
-  export type ShortDescriptionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ShortDescription.
-     */
-    data: XOR<ShortDescriptionCreateInput, ShortDescriptionUncheckedCreateInput>
-  }
-
-  /**
-   * ShortDescription createMany
-   */
-  export type ShortDescriptionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ShortDescriptions.
-     */
-    data: ShortDescriptionCreateManyInput | ShortDescriptionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ShortDescription createManyAndReturn
-   */
-  export type ShortDescriptionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * The data used to create many ShortDescriptions.
-     */
-    data: ShortDescriptionCreateManyInput | ShortDescriptionCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ShortDescription update
-   */
-  export type ShortDescriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ShortDescription.
-     */
-    data: XOR<ShortDescriptionUpdateInput, ShortDescriptionUncheckedUpdateInput>
-    /**
-     * Choose, which ShortDescription to update.
-     */
-    where: ShortDescriptionWhereUniqueInput
-  }
-
-  /**
-   * ShortDescription updateMany
-   */
-  export type ShortDescriptionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ShortDescriptions.
-     */
-    data: XOR<ShortDescriptionUpdateManyMutationInput, ShortDescriptionUncheckedUpdateManyInput>
-    /**
-     * Filter which ShortDescriptions to update
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * Limit how many ShortDescriptions to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * ShortDescription updateManyAndReturn
-   */
-  export type ShortDescriptionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * The data used to update ShortDescriptions.
-     */
-    data: XOR<ShortDescriptionUpdateManyMutationInput, ShortDescriptionUncheckedUpdateManyInput>
-    /**
-     * Filter which ShortDescriptions to update
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * Limit how many ShortDescriptions to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * ShortDescription upsert
-   */
-  export type ShortDescriptionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ShortDescription to update in case it exists.
-     */
-    where: ShortDescriptionWhereUniqueInput
-    /**
-     * In case the ShortDescription found by the `where` argument doesn't exist, create a new ShortDescription with this data.
-     */
-    create: XOR<ShortDescriptionCreateInput, ShortDescriptionUncheckedCreateInput>
-    /**
-     * In case the ShortDescription was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ShortDescriptionUpdateInput, ShortDescriptionUncheckedUpdateInput>
-  }
-
-  /**
-   * ShortDescription delete
-   */
-  export type ShortDescriptionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-    /**
-     * Filter which ShortDescription to delete.
-     */
-    where: ShortDescriptionWhereUniqueInput
-  }
-
-  /**
-   * ShortDescription deleteMany
-   */
-  export type ShortDescriptionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ShortDescriptions to delete
-     */
-    where?: ShortDescriptionWhereInput
-    /**
-     * Limit how many ShortDescriptions to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * ShortDescription.post
-   */
-  export type ShortDescription$postArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Post
-     */
-    select?: PostSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Post
-     */
-    omit?: PostOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostInclude<ExtArgs> | null
-    where?: PostWhereInput
-  }
-
-  /**
-   * ShortDescription without action
-   */
-  export type ShortDescriptionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ShortDescription
-     */
-    select?: ShortDescriptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the ShortDescription
-     */
-    omit?: ShortDescriptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ShortDescriptionInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model User
    */
 
@@ -10655,6 +9425,7 @@ export namespace Prisma {
     repo: 'repo',
     link: 'link',
     tags: 'tags',
+    shortDescription: 'shortDescription',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     authorId: 'authorId'
@@ -10695,17 +9466,6 @@ export namespace Prisma {
   };
 
   export type SectionsScalarFieldEnum = (typeof SectionsScalarFieldEnum)[keyof typeof SectionsScalarFieldEnum]
-
-
-  export const ShortDescriptionScalarFieldEnum: {
-    id: 'id',
-    description: 'description',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    postId: 'postId'
-  };
-
-  export type ShortDescriptionScalarFieldEnum = (typeof ShortDescriptionScalarFieldEnum)[keyof typeof ShortDescriptionScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -10941,10 +9701,10 @@ export namespace Prisma {
     repo?: StringFilter<"Post"> | string
     link?: StringFilter<"Post"> | string
     tags?: StringFilter<"Post"> | string
+    shortDescription?: StringFilter<"Post"> | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     authorId?: IntFilter<"Post"> | number
-    shortDescription?: ShortDescriptionListRelationFilter
     techs?: PostTechListRelationFilter
     sections?: SectionsListRelationFilter
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -10960,10 +9720,10 @@ export namespace Prisma {
     repo?: SortOrder
     link?: SortOrder
     tags?: SortOrder
+    shortDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     authorId?: SortOrder
-    shortDescription?: ShortDescriptionOrderByRelationAggregateInput
     techs?: PostTechOrderByRelationAggregateInput
     sections?: SectionsOrderByRelationAggregateInput
     author?: UserOrderByWithRelationInput
@@ -10982,10 +9742,10 @@ export namespace Prisma {
     repo?: StringFilter<"Post"> | string
     link?: StringFilter<"Post"> | string
     tags?: StringFilter<"Post"> | string
+    shortDescription?: StringFilter<"Post"> | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     authorId?: IntFilter<"Post"> | number
-    shortDescription?: ShortDescriptionListRelationFilter
     techs?: PostTechListRelationFilter
     sections?: SectionsListRelationFilter
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -11001,6 +9761,7 @@ export namespace Prisma {
     repo?: SortOrder
     link?: SortOrder
     tags?: SortOrder
+    shortDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     authorId?: SortOrder
@@ -11024,6 +9785,7 @@ export namespace Prisma {
     repo?: StringWithAggregatesFilter<"Post"> | string
     link?: StringWithAggregatesFilter<"Post"> | string
     tags?: StringWithAggregatesFilter<"Post"> | string
+    shortDescription?: StringWithAggregatesFilter<"Post"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     authorId?: IntWithAggregatesFilter<"Post"> | number
@@ -11205,63 +9967,6 @@ export namespace Prisma {
     postId?: IntWithAggregatesFilter<"Sections"> | number
   }
 
-  export type ShortDescriptionWhereInput = {
-    AND?: ShortDescriptionWhereInput | ShortDescriptionWhereInput[]
-    OR?: ShortDescriptionWhereInput[]
-    NOT?: ShortDescriptionWhereInput | ShortDescriptionWhereInput[]
-    id?: IntFilter<"ShortDescription"> | number
-    description?: StringFilter<"ShortDescription"> | string
-    createdAt?: DateTimeFilter<"ShortDescription"> | Date | string
-    updatedAt?: DateTimeFilter<"ShortDescription"> | Date | string
-    postId?: IntFilter<"ShortDescription"> | number
-    post?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
-  }
-
-  export type ShortDescriptionOrderByWithRelationInput = {
-    id?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    postId?: SortOrder
-    post?: PostOrderByWithRelationInput
-  }
-
-  export type ShortDescriptionWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: ShortDescriptionWhereInput | ShortDescriptionWhereInput[]
-    OR?: ShortDescriptionWhereInput[]
-    NOT?: ShortDescriptionWhereInput | ShortDescriptionWhereInput[]
-    description?: StringFilter<"ShortDescription"> | string
-    createdAt?: DateTimeFilter<"ShortDescription"> | Date | string
-    updatedAt?: DateTimeFilter<"ShortDescription"> | Date | string
-    postId?: IntFilter<"ShortDescription"> | number
-    post?: XOR<PostNullableScalarRelationFilter, PostWhereInput> | null
-  }, "id">
-
-  export type ShortDescriptionOrderByWithAggregationInput = {
-    id?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    postId?: SortOrder
-    _count?: ShortDescriptionCountOrderByAggregateInput
-    _avg?: ShortDescriptionAvgOrderByAggregateInput
-    _max?: ShortDescriptionMaxOrderByAggregateInput
-    _min?: ShortDescriptionMinOrderByAggregateInput
-    _sum?: ShortDescriptionSumOrderByAggregateInput
-  }
-
-  export type ShortDescriptionScalarWhereWithAggregatesInput = {
-    AND?: ShortDescriptionScalarWhereWithAggregatesInput | ShortDescriptionScalarWhereWithAggregatesInput[]
-    OR?: ShortDescriptionScalarWhereWithAggregatesInput[]
-    NOT?: ShortDescriptionScalarWhereWithAggregatesInput | ShortDescriptionScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"ShortDescription"> | number
-    description?: StringWithAggregatesFilter<"ShortDescription"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"ShortDescription"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"ShortDescription"> | Date | string
-    postId?: IntWithAggregatesFilter<"ShortDescription"> | number
-  }
-
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -11441,9 +10146,9 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    shortDescription?: ShortDescriptionCreateNestedManyWithoutPostInput
     techs?: PostTechCreateNestedManyWithoutPostInput
     sections?: SectionsCreateNestedManyWithoutPostInput
     author?: UserCreateNestedOneWithoutPostsInput
@@ -11459,10 +10164,10 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     authorId: number
-    shortDescription?: ShortDescriptionUncheckedCreateNestedManyWithoutPostInput
     techs?: PostTechUncheckedCreateNestedManyWithoutPostInput
     sections?: SectionsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -11476,9 +10181,9 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    shortDescription?: ShortDescriptionUpdateManyWithoutPostNestedInput
     techs?: PostTechUpdateManyWithoutPostNestedInput
     sections?: SectionsUpdateManyWithoutPostNestedInput
     author?: UserUpdateOneWithoutPostsNestedInput
@@ -11494,10 +10199,10 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     authorId?: IntFieldUpdateOperationsInput | number
-    shortDescription?: ShortDescriptionUncheckedUpdateManyWithoutPostNestedInput
     techs?: PostTechUncheckedUpdateManyWithoutPostNestedInput
     sections?: SectionsUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -11512,6 +10217,7 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     authorId: number
@@ -11526,6 +10232,7 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11540,6 +10247,7 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     authorId?: IntFieldUpdateOperationsInput | number
@@ -11703,58 +10411,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    postId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ShortDescriptionCreateInput = {
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    post?: PostCreateNestedOneWithoutShortDescriptionInput
-  }
-
-  export type ShortDescriptionUncheckedCreateInput = {
-    id?: number
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    postId: number
-  }
-
-  export type ShortDescriptionUpdateInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    post?: PostUpdateOneWithoutShortDescriptionNestedInput
-  }
-
-  export type ShortDescriptionUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    postId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ShortDescriptionCreateManyInput = {
-    id?: number
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    postId: number
-  }
-
-  export type ShortDescriptionUpdateManyMutationInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ShortDescriptionUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     postId?: IntFieldUpdateOperationsInput | number
@@ -11994,12 +10650,6 @@ export namespace Prisma {
     not?: NestedEnumPostStatusFilter<$PrismaModel> | $Enums.PostStatus
   }
 
-  export type ShortDescriptionListRelationFilter = {
-    every?: ShortDescriptionWhereInput
-    some?: ShortDescriptionWhereInput
-    none?: ShortDescriptionWhereInput
-  }
-
   export type PostTechListRelationFilter = {
     every?: PostTechWhereInput
     some?: PostTechWhereInput
@@ -12015,10 +10665,6 @@ export namespace Prisma {
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
-  }
-
-  export type ShortDescriptionOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type PostTechOrderByRelationAggregateInput = {
@@ -12039,6 +10685,7 @@ export namespace Prisma {
     repo?: SortOrder
     link?: SortOrder
     tags?: SortOrder
+    shortDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     authorId?: SortOrder
@@ -12059,6 +10706,7 @@ export namespace Prisma {
     repo?: SortOrder
     link?: SortOrder
     tags?: SortOrder
+    shortDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     authorId?: SortOrder
@@ -12074,6 +10722,7 @@ export namespace Prisma {
     repo?: SortOrder
     link?: SortOrder
     tags?: SortOrder
+    shortDescription?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     authorId?: SortOrder
@@ -12214,40 +10863,6 @@ export namespace Prisma {
     postId?: SortOrder
   }
 
-  export type ShortDescriptionCountOrderByAggregateInput = {
-    id?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    postId?: SortOrder
-  }
-
-  export type ShortDescriptionAvgOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-  }
-
-  export type ShortDescriptionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    postId?: SortOrder
-  }
-
-  export type ShortDescriptionMinOrderByAggregateInput = {
-    id?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    postId?: SortOrder
-  }
-
-  export type ShortDescriptionSumOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-  }
-
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -12367,13 +10982,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type ShortDescriptionCreateNestedManyWithoutPostInput = {
-    create?: XOR<ShortDescriptionCreateWithoutPostInput, ShortDescriptionUncheckedCreateWithoutPostInput> | ShortDescriptionCreateWithoutPostInput[] | ShortDescriptionUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: ShortDescriptionCreateOrConnectWithoutPostInput | ShortDescriptionCreateOrConnectWithoutPostInput[]
-    createMany?: ShortDescriptionCreateManyPostInputEnvelope
-    connect?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-  }
-
   export type PostTechCreateNestedManyWithoutPostInput = {
     create?: XOR<PostTechCreateWithoutPostInput, PostTechUncheckedCreateWithoutPostInput> | PostTechCreateWithoutPostInput[] | PostTechUncheckedCreateWithoutPostInput[]
     connectOrCreate?: PostTechCreateOrConnectWithoutPostInput | PostTechCreateOrConnectWithoutPostInput[]
@@ -12394,13 +11002,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type ShortDescriptionUncheckedCreateNestedManyWithoutPostInput = {
-    create?: XOR<ShortDescriptionCreateWithoutPostInput, ShortDescriptionUncheckedCreateWithoutPostInput> | ShortDescriptionCreateWithoutPostInput[] | ShortDescriptionUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: ShortDescriptionCreateOrConnectWithoutPostInput | ShortDescriptionCreateOrConnectWithoutPostInput[]
-    createMany?: ShortDescriptionCreateManyPostInputEnvelope
-    connect?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-  }
-
   export type PostTechUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<PostTechCreateWithoutPostInput, PostTechUncheckedCreateWithoutPostInput> | PostTechCreateWithoutPostInput[] | PostTechUncheckedCreateWithoutPostInput[]
     connectOrCreate?: PostTechCreateOrConnectWithoutPostInput | PostTechCreateOrConnectWithoutPostInput[]
@@ -12417,20 +11018,6 @@ export namespace Prisma {
 
   export type EnumPostStatusFieldUpdateOperationsInput = {
     set?: $Enums.PostStatus
-  }
-
-  export type ShortDescriptionUpdateManyWithoutPostNestedInput = {
-    create?: XOR<ShortDescriptionCreateWithoutPostInput, ShortDescriptionUncheckedCreateWithoutPostInput> | ShortDescriptionCreateWithoutPostInput[] | ShortDescriptionUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: ShortDescriptionCreateOrConnectWithoutPostInput | ShortDescriptionCreateOrConnectWithoutPostInput[]
-    upsert?: ShortDescriptionUpsertWithWhereUniqueWithoutPostInput | ShortDescriptionUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: ShortDescriptionCreateManyPostInputEnvelope
-    set?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    disconnect?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    delete?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    connect?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    update?: ShortDescriptionUpdateWithWhereUniqueWithoutPostInput | ShortDescriptionUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: ShortDescriptionUpdateManyWithWhereWithoutPostInput | ShortDescriptionUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: ShortDescriptionScalarWhereInput | ShortDescriptionScalarWhereInput[]
   }
 
   export type PostTechUpdateManyWithoutPostNestedInput = {
@@ -12469,20 +11056,6 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
-  }
-
-  export type ShortDescriptionUncheckedUpdateManyWithoutPostNestedInput = {
-    create?: XOR<ShortDescriptionCreateWithoutPostInput, ShortDescriptionUncheckedCreateWithoutPostInput> | ShortDescriptionCreateWithoutPostInput[] | ShortDescriptionUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: ShortDescriptionCreateOrConnectWithoutPostInput | ShortDescriptionCreateOrConnectWithoutPostInput[]
-    upsert?: ShortDescriptionUpsertWithWhereUniqueWithoutPostInput | ShortDescriptionUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: ShortDescriptionCreateManyPostInputEnvelope
-    set?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    disconnect?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    delete?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    connect?: ShortDescriptionWhereUniqueInput | ShortDescriptionWhereUniqueInput[]
-    update?: ShortDescriptionUpdateWithWhereUniqueWithoutPostInput | ShortDescriptionUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: ShortDescriptionUpdateManyWithWhereWithoutPostInput | ShortDescriptionUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: ShortDescriptionScalarWhereInput | ShortDescriptionScalarWhereInput[]
   }
 
   export type PostTechUncheckedUpdateManyWithoutPostNestedInput = {
@@ -12555,22 +11128,6 @@ export namespace Prisma {
     delete?: PostWhereInput | boolean
     connect?: PostWhereUniqueInput
     update?: XOR<XOR<PostUpdateToOneWithWhereWithoutSectionsInput, PostUpdateWithoutSectionsInput>, PostUncheckedUpdateWithoutSectionsInput>
-  }
-
-  export type PostCreateNestedOneWithoutShortDescriptionInput = {
-    create?: XOR<PostCreateWithoutShortDescriptionInput, PostUncheckedCreateWithoutShortDescriptionInput>
-    connectOrCreate?: PostCreateOrConnectWithoutShortDescriptionInput
-    connect?: PostWhereUniqueInput
-  }
-
-  export type PostUpdateOneWithoutShortDescriptionNestedInput = {
-    create?: XOR<PostCreateWithoutShortDescriptionInput, PostUncheckedCreateWithoutShortDescriptionInput>
-    connectOrCreate?: PostCreateOrConnectWithoutShortDescriptionInput
-    upsert?: PostUpsertWithoutShortDescriptionInput
-    disconnect?: PostWhereInput | boolean
-    delete?: PostWhereInput | boolean
-    connect?: PostWhereUniqueInput
-    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutShortDescriptionInput, PostUpdateWithoutShortDescriptionInput>, PostUncheckedUpdateWithoutShortDescriptionInput>
   }
 
   export type PostCreateNestedManyWithoutAuthorInput = {
@@ -12793,29 +11350,6 @@ export namespace Prisma {
     pageId?: IntFilter<"PageTech"> | number
   }
 
-  export type ShortDescriptionCreateWithoutPostInput = {
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ShortDescriptionUncheckedCreateWithoutPostInput = {
-    id?: number
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ShortDescriptionCreateOrConnectWithoutPostInput = {
-    where: ShortDescriptionWhereUniqueInput
-    create: XOR<ShortDescriptionCreateWithoutPostInput, ShortDescriptionUncheckedCreateWithoutPostInput>
-  }
-
-  export type ShortDescriptionCreateManyPostInputEnvelope = {
-    data: ShortDescriptionCreateManyPostInput | ShortDescriptionCreateManyPostInput[]
-    skipDuplicates?: boolean
-  }
-
   export type PostTechCreateWithoutPostInput = {
     name: string
     createdAt?: Date | string
@@ -12886,33 +11420,6 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutPostsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
-  }
-
-  export type ShortDescriptionUpsertWithWhereUniqueWithoutPostInput = {
-    where: ShortDescriptionWhereUniqueInput
-    update: XOR<ShortDescriptionUpdateWithoutPostInput, ShortDescriptionUncheckedUpdateWithoutPostInput>
-    create: XOR<ShortDescriptionCreateWithoutPostInput, ShortDescriptionUncheckedCreateWithoutPostInput>
-  }
-
-  export type ShortDescriptionUpdateWithWhereUniqueWithoutPostInput = {
-    where: ShortDescriptionWhereUniqueInput
-    data: XOR<ShortDescriptionUpdateWithoutPostInput, ShortDescriptionUncheckedUpdateWithoutPostInput>
-  }
-
-  export type ShortDescriptionUpdateManyWithWhereWithoutPostInput = {
-    where: ShortDescriptionScalarWhereInput
-    data: XOR<ShortDescriptionUpdateManyMutationInput, ShortDescriptionUncheckedUpdateManyWithoutPostInput>
-  }
-
-  export type ShortDescriptionScalarWhereInput = {
-    AND?: ShortDescriptionScalarWhereInput | ShortDescriptionScalarWhereInput[]
-    OR?: ShortDescriptionScalarWhereInput[]
-    NOT?: ShortDescriptionScalarWhereInput | ShortDescriptionScalarWhereInput[]
-    id?: IntFilter<"ShortDescription"> | number
-    description?: StringFilter<"ShortDescription"> | string
-    createdAt?: DateTimeFilter<"ShortDescription"> | Date | string
-    updatedAt?: DateTimeFilter<"ShortDescription"> | Date | string
-    postId?: IntFilter<"ShortDescription"> | number
   }
 
   export type PostTechUpsertWithWhereUniqueWithoutPostInput = {
@@ -13009,9 +11516,9 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    shortDescription?: ShortDescriptionCreateNestedManyWithoutPostInput
     sections?: SectionsCreateNestedManyWithoutPostInput
     author?: UserCreateNestedOneWithoutPostsInput
   }
@@ -13026,10 +11533,10 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     authorId: number
-    shortDescription?: ShortDescriptionUncheckedCreateNestedManyWithoutPostInput
     sections?: SectionsUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -13058,9 +11565,9 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    shortDescription?: ShortDescriptionUpdateManyWithoutPostNestedInput
     sections?: SectionsUpdateManyWithoutPostNestedInput
     author?: UserUpdateOneWithoutPostsNestedInput
   }
@@ -13075,10 +11582,10 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     authorId?: IntFieldUpdateOperationsInput | number
-    shortDescription?: ShortDescriptionUncheckedUpdateManyWithoutPostNestedInput
     sections?: SectionsUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -13133,9 +11640,9 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    shortDescription?: ShortDescriptionCreateNestedManyWithoutPostInput
     techs?: PostTechCreateNestedManyWithoutPostInput
     author?: UserCreateNestedOneWithoutPostsInput
   }
@@ -13150,10 +11657,10 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
     authorId: number
-    shortDescription?: ShortDescriptionUncheckedCreateNestedManyWithoutPostInput
     techs?: PostTechUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -13182,9 +11689,9 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    shortDescription?: ShortDescriptionUpdateManyWithoutPostNestedInput
     techs?: PostTechUpdateManyWithoutPostNestedInput
     author?: UserUpdateOneWithoutPostsNestedInput
   }
@@ -13199,93 +11706,11 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    authorId?: IntFieldUpdateOperationsInput | number
-    shortDescription?: ShortDescriptionUncheckedUpdateManyWithoutPostNestedInput
-    techs?: PostTechUncheckedUpdateManyWithoutPostNestedInput
-  }
-
-  export type PostCreateWithoutShortDescriptionInput = {
-    slug: string
-    status?: $Enums.PostStatus
-    title: string
-    body: string
-    cover: string
-    repo: string
-    link: string
-    tags?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    techs?: PostTechCreateNestedManyWithoutPostInput
-    sections?: SectionsCreateNestedManyWithoutPostInput
-    author?: UserCreateNestedOneWithoutPostsInput
-  }
-
-  export type PostUncheckedCreateWithoutShortDescriptionInput = {
-    id?: number
-    slug: string
-    status?: $Enums.PostStatus
-    title: string
-    body: string
-    cover: string
-    repo: string
-    link: string
-    tags?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    authorId: number
-    techs?: PostTechUncheckedCreateNestedManyWithoutPostInput
-    sections?: SectionsUncheckedCreateNestedManyWithoutPostInput
-  }
-
-  export type PostCreateOrConnectWithoutShortDescriptionInput = {
-    where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutShortDescriptionInput, PostUncheckedCreateWithoutShortDescriptionInput>
-  }
-
-  export type PostUpsertWithoutShortDescriptionInput = {
-    update: XOR<PostUpdateWithoutShortDescriptionInput, PostUncheckedUpdateWithoutShortDescriptionInput>
-    create: XOR<PostCreateWithoutShortDescriptionInput, PostUncheckedCreateWithoutShortDescriptionInput>
-    where?: PostWhereInput
-  }
-
-  export type PostUpdateToOneWithWhereWithoutShortDescriptionInput = {
-    where?: PostWhereInput
-    data: XOR<PostUpdateWithoutShortDescriptionInput, PostUncheckedUpdateWithoutShortDescriptionInput>
-  }
-
-  export type PostUpdateWithoutShortDescriptionInput = {
-    slug?: StringFieldUpdateOperationsInput | string
-    status?: EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
-    title?: StringFieldUpdateOperationsInput | string
-    body?: StringFieldUpdateOperationsInput | string
-    cover?: StringFieldUpdateOperationsInput | string
-    repo?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    techs?: PostTechUpdateManyWithoutPostNestedInput
-    sections?: SectionsUpdateManyWithoutPostNestedInput
-    author?: UserUpdateOneWithoutPostsNestedInput
-  }
-
-  export type PostUncheckedUpdateWithoutShortDescriptionInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    slug?: StringFieldUpdateOperationsInput | string
-    status?: EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
-    title?: StringFieldUpdateOperationsInput | string
-    body?: StringFieldUpdateOperationsInput | string
-    cover?: StringFieldUpdateOperationsInput | string
-    repo?: StringFieldUpdateOperationsInput | string
-    link?: StringFieldUpdateOperationsInput | string
-    tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     authorId?: IntFieldUpdateOperationsInput | number
     techs?: PostTechUncheckedUpdateManyWithoutPostNestedInput
-    sections?: SectionsUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostCreateWithoutAuthorInput = {
@@ -13297,9 +11722,9 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    shortDescription?: ShortDescriptionCreateNestedManyWithoutPostInput
     techs?: PostTechCreateNestedManyWithoutPostInput
     sections?: SectionsCreateNestedManyWithoutPostInput
   }
@@ -13314,9 +11739,9 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    shortDescription?: ShortDescriptionUncheckedCreateNestedManyWithoutPostInput
     techs?: PostTechUncheckedCreateNestedManyWithoutPostInput
     sections?: SectionsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -13360,6 +11785,7 @@ export namespace Prisma {
     repo?: StringFilter<"Post"> | string
     link?: StringFilter<"Post"> | string
     tags?: StringFilter<"Post"> | string
+    shortDescription?: StringFilter<"Post"> | string
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     authorId?: IntFilter<"Post"> | number
@@ -13392,13 +11818,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ShortDescriptionCreateManyPostInput = {
-    id?: number
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
   export type PostTechCreateManyPostInput = {
     id?: number
     name: string
@@ -13412,26 +11831,6 @@ export namespace Prisma {
     image: string
     createdAt?: Date | string
     updatedAt?: Date | string
-  }
-
-  export type ShortDescriptionUpdateWithoutPostInput = {
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ShortDescriptionUncheckedUpdateWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ShortDescriptionUncheckedUpdateManyWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostTechUpdateWithoutPostInput = {
@@ -13487,6 +11886,7 @@ export namespace Prisma {
     repo: string
     link: string
     tags?: string
+    shortDescription: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -13500,9 +11900,9 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    shortDescription?: ShortDescriptionUpdateManyWithoutPostNestedInput
     techs?: PostTechUpdateManyWithoutPostNestedInput
     sections?: SectionsUpdateManyWithoutPostNestedInput
   }
@@ -13517,9 +11917,9 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    shortDescription?: ShortDescriptionUncheckedUpdateManyWithoutPostNestedInput
     techs?: PostTechUncheckedUpdateManyWithoutPostNestedInput
     sections?: SectionsUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -13534,6 +11934,7 @@ export namespace Prisma {
     repo?: StringFieldUpdateOperationsInput | string
     link?: StringFieldUpdateOperationsInput | string
     tags?: StringFieldUpdateOperationsInput | string
+    shortDescription?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

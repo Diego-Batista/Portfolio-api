@@ -145,6 +145,7 @@ exports.Prisma.PostScalarFieldEnum = {
   repo: 'repo',
   link: 'link',
   tags: 'tags',
+  shortDescription: 'shortDescription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   authorId: 'authorId'
@@ -170,14 +171,6 @@ exports.Prisma.SectionsScalarFieldEnum = {
   id: 'id',
   title: 'title',
   image: 'image',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  postId: 'postId'
-};
-
-exports.Prisma.ShortDescriptionScalarFieldEnum = {
-  id: 'id',
-  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   postId: 'postId'
@@ -214,7 +207,6 @@ exports.Prisma.ModelName = {
   PostTech: 'PostTech',
   PageTech: 'PageTech',
   Sections: 'Sections',
-  ShortDescription: 'ShortDescription',
   User: 'User'
 };
 
