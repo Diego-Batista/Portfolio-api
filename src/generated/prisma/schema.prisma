@@ -14,7 +14,7 @@ model Page {
   introduction String
   avatar       String
 
-  techs Techs[]
+  techs PageTech[]
 }
 
 model Socials {
@@ -39,23 +39,31 @@ model Post {
   updatedAt DateTime   @updatedAt
 
   shortDescription ShortDescription[]
-  techs            Techs[]
+  techs            PostTech[]
   sections         Sections[]
 
   authorId Int
   author   User? @relation(fields: [authorId], references: [id])
 }
 
-model Techs {
+model PostTech {
   id        Int      @id @default(autoincrement())
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  post   Post @relation(fields: [postId], references: [id])
   postId Int
-  post   Post? @relation(fields: [postId], references: [id])
+}
+
+model PageTech {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  page   Page @relation(fields: [pageId], references: [id])
   pageId Int
-  page   Page? @relation(fields: [pageId], references: [id])
 }
 
 model Sections {

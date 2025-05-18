@@ -150,12 +150,19 @@ exports.Prisma.PostScalarFieldEnum = {
   authorId: 'authorId'
 };
 
-exports.Prisma.TechsScalarFieldEnum = {
+exports.Prisma.PostTechScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  postId: 'postId',
+  postId: 'postId'
+};
+
+exports.Prisma.PageTechScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   pageId: 'pageId'
 };
 
@@ -204,7 +211,8 @@ exports.Prisma.ModelName = {
   Page: 'Page',
   Socials: 'Socials',
   Post: 'Post',
-  Techs: 'Techs',
+  PostTech: 'PostTech',
+  PageTech: 'PageTech',
   Sections: 'Sections',
   ShortDescription: 'ShortDescription',
   User: 'User'
