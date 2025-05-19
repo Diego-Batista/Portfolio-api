@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express'
 import { z } from 'zod'
+import { createToken } from '../services/auth'
 import { createUser } from '../services/user'
 
 export const sigUp: RequestHandler = async (req, res) => {
@@ -22,7 +23,7 @@ export const sigUp: RequestHandler = async (req, res) => {
         return
     }
 
-    const token = '123'
+    const token = createToken(newUser)
 
     res.status(201).json({
         message: 'User created',
