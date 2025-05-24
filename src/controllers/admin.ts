@@ -1,10 +1,9 @@
 import { Response } from 'express'
 import { z } from 'zod'
 import { prisma } from '../libs/prisma'
-import { createSlug, handleCover } from '../services/post'
+import { createSlug } from '../services/post'
 import { getUserById } from '../services/user'
 import { ExtendedRequest } from '../types/extended-request'
-import { coverToUrl } from '../utils/cover-to-url'
 
 export const addPost = async (req: ExtendedRequest, res: Response) => {
     if (!req.file) return
@@ -28,8 +27,8 @@ export const addPost = async (req: ExtendedRequest, res: Response) => {
         res.status(400).json({ error: 'No file uploaded' })
         return
     }
-
-    const coverName = await handleCover(req.file)
+    const coverName = (req.file as Express.Multer.File).path
+    // const coverName = await handleCover(req.file)
     if (!coverName) {
         res.status(400).json({ error: 'Invalid file type' })
         return
@@ -63,7 +62,7 @@ export const addPost = async (req: ExtendedRequest, res: Response) => {
             link: newPost.link,
             tags: newPost.tags,
             shortDescription: newPost.shortDescription,
-            cover: coverToUrl(newPost.cover),
+            cover: newPost.cover,
             createdAt: newPost.createdAt,
             updatedAt: newPost.updatedAt,
             status: newPost.status,
